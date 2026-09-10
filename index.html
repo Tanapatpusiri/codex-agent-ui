@@ -36,11 +36,12 @@
     .list{display:grid;gap:11px}.task{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:15px;box-shadow:var(--shadow)}
     .taskStatusRow{display:flex;justify-content:flex-end;margin-bottom:8px}.status{display:inline-flex;align-items:center;border-radius:999px;padding:6px 9px;font-size:11px;line-height:1;font-weight:600}.status.progress{background:#fff3df;color:#b56e09}.status.review{background:#edf4ff;color:#2466c5}.status.late{background:var(--red-soft);color:var(--red)}
     .taskMain{display:grid;grid-template-columns:94px minmax(0,1fr);gap:14px;align-items:stretch}
-    .deadline{min-height:0;height:100%;border-radius:17px;padding:9px 7px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid var(--neutral-line);background:var(--neutral-soft);color:var(--neutral)}
+    .deadline{min-height:0;height:100%;border-radius:17px;padding:9px 7px;display:grid;place-items:center;border:1px solid var(--neutral-line);background:var(--neutral-soft);color:var(--neutral)}
     .deadline.danger{background:var(--red-soft);color:var(--red);border-color:var(--red-line)}
     .deadline.soon{background:var(--yellow-soft);color:var(--yellow);border-color:var(--yellow-line)}
     .deadline.today{background:var(--green-soft);color:var(--green);border-color:var(--green-line)}
-    .deadlineIcon{display:grid;place-items:center;margin-bottom:3px}.deadlineIcon .icon{width:24px;height:24px;stroke-width:1.8}
+    .deadlineContent{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;margin:auto}
+    .deadlineIcon{display:grid;place-items:center;margin-bottom:4px}.deadlineIcon .icon{width:14px;height:14px;stroke-width:1.85}
     .deadlineLabel{font-size:10px;line-height:1.2;font-weight:650;margin-bottom:2px}
     .deadlineDay{font-size:31px;line-height:.98;font-weight:760;letter-spacing:-.04em;margin:2px 0 1px}
     .deadlineMonthYear{font-size:12px;line-height:1.2;font-weight:650;margin-top:2px}
@@ -131,11 +132,13 @@
         <article class="task">
           <div class="taskMain">
             <div class="deadline ${deadlineTone(t)}">
-              <div class="deadlineIcon">${icon('calendar')}</div>
-              <div class="deadlineLabel">กำหนดส่ง</div>
-              <div class="deadlineDay">${dayText(t)}</div>
-              <div class="deadlineMonthYear">${monthYearText(t)}</div>
-              <div class="deadlineTime">${timeText(t)} <small>น.</small></div>
+              <div class="deadlineContent">
+                <div class="deadlineIcon">${icon('calendar')}</div>
+                <div class="deadlineLabel">กำหนดส่ง</div>
+                <div class="deadlineDay">${dayText(t)}</div>
+                <div class="deadlineMonthYear">${monthYearText(t)}</div>
+                <div class="deadlineTime">${timeText(t)} <small>น.</small></div>
+              </div>
             </div>
             <div class="taskInfo">
               <div class="taskStatusRow"><span class="status ${t.tone}">${t.status}</span></div>
