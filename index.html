@@ -3,31 +3,78 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#f6f8fb" />
   <title>PJAA Work — งานของฉัน</title>
   <style>
-    :root{--bg:#f5f7fb;--card:#fff;--text:#15213b;--muted:#7d879a;--blue:#1f67f1;--blue2:#eaf2ff;--orange:#f59e0b;--red:#ef4444;--green:#16a34a;--shadow:0 12px 34px rgba(25,45,88,.08)}
-    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eef5ff 0,#f7f9fc 24%,#f5f7fb 100%);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text)}
-    button,input{font:inherit}.app{min-height:100dvh;max-width:560px;margin:0 auto;padding:18px 16px 104px}.hero{padding:16px 2px 10px}.eyebrow{font-size:12px;color:#8a96aa;font-weight:700}.hero h1{font-size:34px;line-height:1.05;margin:8px 0 4px;letter-spacing:-.6px}.hero p{margin:0;color:#8a96aa;font-size:14px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}.sum{background:rgba(255,255,255,.94);border:1px solid #e8edf5;border-radius:20px;padding:13px 12px;box-shadow:var(--shadow)}.sum .icon{width:35px;height:35px;border-radius:12px;display:grid;place-items:center;font-size:18px;margin-bottom:8px}.sum.today .icon{background:#e8f1ff}.sum.soon .icon{background:#fff2dc}.sum.late .icon{background:#ffe9eb}.sum span{display:block;font-size:11px;color:#6f7a8d;font-weight:700;white-space:nowrap}.sum b{font-size:28px;line-height:1.1}.toolbar{display:grid;grid-template-columns:1fr 48px;gap:9px;margin:8px 0 10px}.search{height:48px;border:1px solid #dfe6f0;background:#fff;border-radius:16px;padding:0 16px;outline:none}.filterBtn{border:1px solid #dfe6f0;background:#fff;border-radius:16px;font-size:20px}.chips{display:flex;gap:8px;overflow:auto;padding:2px 0 4px;scrollbar-width:none}.chip{border:1px solid #e1e7f0;background:#fff;color:#596579;border-radius:999px;padding:9px 14px;font-size:12px;font-weight:800;white-space:nowrap}.chip.active{background:var(--blue);border-color:var(--blue);color:#fff}.sectionHead{display:flex;justify-content:space-between;align-items:end;margin:18px 2px 10px}.sectionHead h2{font-size:18px;margin:0}.sectionHead span{font-size:12px;color:#8791a3}.list{display:grid;gap:12px}.task{background:var(--card);border:1px solid #e8edf4;border-radius:22px;padding:16px;box-shadow:var(--shadow)}.taskTop,.taskFoot{display:flex;align-items:center;justify-content:space-between;gap:10px}.badge,.status{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:800}.badge{background:#eaf2ff;color:#2466d6}.status.progress{background:#fff0d6;color:#d27a00}.status.review{background:#eaf2ff;color:#2466d6}.status.late{background:#ffe9eb;color:#d92d3a}.task h3{font-size:17px;line-height:1.35;margin:13px 0 7px}.place{font-size:12px;color:#7d879a;margin-bottom:14px}.deadline{display:flex;flex-direction:column;background:#fff0f1;color:#d93f4b;border-radius:14px;padding:9px 11px;min-width:128px}.deadline small{font-size:10px;font-weight:700}.deadline b{font-size:13px}.open{border:0;background:var(--blue);color:#fff;border-radius:14px;padding:12px 16px;font-weight:800;min-width:112px}.empty{padding:40px 20px;text-align:center;color:#8a94a6;background:#fff;border-radius:20px}.nav{position:fixed;z-index:20;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 24px),536px);height:72px;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);border:1px solid #e1e7ef;border-radius:24px;box-shadow:0 16px 45px rgba(28,42,72,.16);display:grid;grid-template-columns:repeat(4,1fr);padding:6px}.nav button{border:0;background:transparent;color:#7d879a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:800}.nav button.active{color:var(--blue)}.nav i{font-style:normal;font-size:20px}.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;background:#17223c;color:#fff;padding:10px 14px;border-radius:12px;font-size:12px;transition:.2s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-    @media(min-width:700px){body{padding:24px}.app{border-radius:32px;background:#f7f9fc;box-shadow:0 30px 90px rgba(24,40,74,.12)}}
+    :root{
+      --bg:#f6f8fb;--card:#fff;--text:#172033;--muted:#7b8493;--line:#e7ebf1;
+      --blue:#1769e8;--blue-soft:#edf4ff;--orange:#c9780a;--orange-soft:#fff3df;
+      --red:#d83b49;--red-soft:#fff0f2;--shadow:0 8px 28px rgba(26,39,67,.06)
+    }
+    *{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    body{
+      margin:0;background:var(--bg);color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue","Noto Sans Thai","Tahoma",sans-serif;
+      font-weight:400;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility
+    }
+    button,input{font:inherit}button{cursor:pointer}.icon{width:20px;height:20px;display:block;fill:none;stroke:currentColor;stroke-width:1.85;stroke-linecap:round;stroke-linejoin:round}
+    .app{min-height:100dvh;max-width:560px;margin:0 auto;padding:20px 16px 108px}
+    .hero{padding:8px 2px 4px}.hero h1{font-size:30px;line-height:1.15;margin:0;font-weight:700;letter-spacing:-.035em}
+    .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0 14px}
+    .sum{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:13px 12px 12px;box-shadow:var(--shadow)}
+    .sum .iconWrap{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;margin-bottom:9px}.sum .icon{width:18px;height:18px}
+    .sum.today .iconWrap{background:var(--blue-soft);color:var(--blue)}.sum.soon .iconWrap{background:var(--orange-soft);color:var(--orange)}.sum.late .iconWrap{background:var(--red-soft);color:var(--red)}
+    .sum span{display:block;font-size:11px;line-height:1.2;color:#717b8b;font-weight:600;white-space:nowrap}.sum b{display:block;margin-top:2px;font-size:26px;line-height:1.05;font-weight:700;letter-spacing:-.03em}
+    .toolbar{display:grid;grid-template-columns:1fr 48px;gap:9px;margin:4px 0 10px}.search{height:48px;border:1px solid #dde3ec;background:#fff;border-radius:15px;padding:0 15px;color:var(--text);font-size:14px;outline:none}.search::placeholder{color:#98a0ad}.search:focus{border-color:#a9c6f4;box-shadow:0 0 0 3px #eaf2ff}.filterBtn{height:48px;border:1px solid #dde3ec;background:#fff;border-radius:15px;color:#586274;display:grid;place-items:center}.filterBtn .icon{width:20px;height:20px}
+    .chips{display:flex;gap:8px;overflow:auto;padding:2px 0 3px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chip{border:1px solid #e0e5ed;background:#fff;color:#5e6878;border-radius:999px;padding:9px 14px;font-size:12px;font-weight:600;white-space:nowrap}.chip.active{background:var(--blue);border-color:var(--blue);color:#fff}
+    .sectionHead{display:flex;justify-content:space-between;align-items:end;margin:20px 2px 10px}.sectionHead h2{font-size:18px;line-height:1.2;margin:0;font-weight:700}.sectionHead span{font-size:12px;color:#858e9d;font-weight:500}
+    .list{display:grid;gap:11px}.task{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:15px;box-shadow:var(--shadow)}
+    .taskTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.badge,.status{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 9px;font-size:11px;line-height:1;font-weight:600}.badge{background:var(--blue-soft);color:#2865bd}.badge .icon{width:14px;height:14px}.status.progress{background:var(--orange-soft);color:#b56e09}.status.review{background:#edf4ff;color:#2466c5}.status.late{background:var(--red-soft);color:var(--red)}
+    .taskMain{display:grid;grid-template-columns:94px minmax(0,1fr);gap:14px;align-items:stretch}.deadline{min-height:112px;border-radius:17px;background:#fff1f3;color:var(--red);padding:12px 10px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;border:1px solid #ffe1e5}.deadline .deadlineLabel{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;margin-bottom:7px}.deadline .icon{width:14px;height:14px}.deadline .date{font-size:17px;line-height:1.15;font-weight:750;letter-spacing:-.03em}.deadline .time{font-size:14px;line-height:1.2;font-weight:650;margin-top:4px}.deadline .time small{font-size:10px;font-weight:500}
+    .taskInfo{min-width:0;display:flex;flex-direction:column}.taskInfo h3{font-size:16px;line-height:1.42;margin:1px 0 8px;font-weight:650;letter-spacing:-.02em}.place{display:flex;align-items:center;gap:5px;font-size:12px;line-height:1.3;color:#7e8796;margin-bottom:13px}.place .icon{width:14px;height:14px;flex:0 0 auto}.open{margin-top:auto;align-self:flex-start;min-height:40px;border:0;background:var(--blue);color:#fff;border-radius:13px;padding:0 14px;font-size:12px;font-weight:650;display:inline-flex;align-items:center;gap:7px}.open .icon{width:15px;height:15px}
+    .empty{padding:40px 20px;text-align:center;color:#8992a1;background:#fff;border:1px solid var(--line);border-radius:20px}
+    .nav{position:fixed;z-index:20;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 24px),536px);height:72px;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid #e1e6ed;border-radius:23px;box-shadow:0 14px 40px rgba(28,42,72,.14);display:grid;grid-template-columns:repeat(4,1fr);padding:6px}.nav button{border:0;background:transparent;color:#7b8493;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10px;font-weight:600}.nav button.active{color:var(--blue)}.nav .icon{width:20px;height:20px}
+    .toast{position:fixed;z-index:30;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;background:#172033;color:#fff;padding:10px 14px;border-radius:12px;font-size:12px;transition:.2s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    @media(max-width:370px){.app{padding-left:12px;padding-right:12px}.taskMain{grid-template-columns:88px minmax(0,1fr);gap:11px}.deadline{padding-left:8px;padding-right:8px}.taskInfo h3{font-size:15px}.sum{padding-left:9px;padding-right:9px}.sum span{font-size:10px}}
+    @media(min-width:700px){body{padding:24px}.app{border-radius:30px;background:#f7f9fc;box-shadow:0 30px 90px rgba(24,40,74,.1)}}
   </style>
 </head>
 <body>
   <main class="app">
-    <header class="hero"><div class="eyebrow">PJAA WORK · ผ่าน LINE OA</div><h1>งานของฉัน</h1><p>ดูงานที่ต้องส่ง อัปเดต และติดตามสถานะได้จากมือถือ</p></header>
+    <header class="hero"><h1>งานของฉัน</h1></header>
+
     <section class="summary">
-      <div class="sum today"><div class="icon">📅</div><span>วันนี้</span><b id="todayCount">0</b></div>
-      <div class="sum soon"><div class="icon">⏰</div><span>ใกล้ครบกำหนด</span><b id="soonCount">0</b></div>
-      <div class="sum late"><div class="icon">!</div><span>เกินกำหนด</span><b id="lateCount">0</b></div>
+      <div class="sum today"><div class="iconWrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div><span>วันนี้</span><b id="todayCount">0</b></div>
+      <div class="sum soon"><div class="iconWrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><span>ใกล้ครบกำหนด</span><b id="soonCount">0</b></div>
+      <div class="sum late"><div class="iconWrap"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.8 20h18.4L12 3Z"/><path d="M12 9v5M12 17.2v.1"/></svg></div><span>เกินกำหนด</span><b id="lateCount">0</b></div>
     </section>
-    <div class="toolbar"><input id="search" class="search" placeholder="ค้นหาชื่องาน พื้นที่ หรือหน่วยงาน"/><button class="filterBtn" id="filterBtn">☷</button></div>
-    <div class="chips" id="chips">
-      <button class="chip active" data-filter="all">ทั้งหมด</button><button class="chip" data-filter="urgent">ด่วน</button><button class="chip" data-filter="soon">ใกล้ครบ</button><button class="chip" data-filter="late">ค้าง</button>
+
+    <div class="toolbar">
+      <input id="search" class="search" placeholder="ค้นหาชื่องาน พื้นที่ หรือหน่วยงาน" />
+      <button class="filterBtn" id="filterBtn" aria-label="ล้างตัวกรอง"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
     </div>
+
+    <div class="chips" id="chips">
+      <button class="chip active" data-filter="all">ทั้งหมด</button>
+      <button class="chip" data-filter="urgent">ด่วน</button>
+      <button class="chip" data-filter="soon">ใกล้ครบ</button>
+      <button class="chip" data-filter="late">ค้าง</button>
+    </div>
+
     <div class="sectionHead"><h2>รายการงาน</h2><span id="resultCount"></span></div>
     <section class="list" id="taskList"></section>
   </main>
-  <nav class="nav"><button><i>⌂</i>หน้าหลัก</button><button class="active"><i>☷</i>งานของฉัน</button><button><i>↺</i>ประวัติ</button><button><i>♙</i>โปรไฟล์</button></nav>
+
+  <nav class="nav" aria-label="เมนูหลัก">
+    <button aria-label="หน้าหลัก"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10M9 20v-6h6v6"/></svg><span>หน้าหลัก</span></button>
+    <button class="active" aria-label="งานของฉัน"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="m8 12 2.2 2.2L15.5 9M8 7h8M8 17h8"/></svg><span>งานของฉัน</span></button>
+    <button aria-label="ประวัติ"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg><span>ประวัติ</span></button>
+    <button aria-label="โปรไฟล์"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>โปรไฟล์</span></button>
+  </nav>
+
   <div class="toast" id="toast">หน้ารายละเอียดงานจะทำใน Step 2</div>
+
   <script>
     const tasks=[
       {id:1,category:'งานเอกสาร',title:'จัดทำรายงานผลการดำเนินงาน ประจำไตรมาส 3/2569',place:'ภาค 4 · เขต 4',due:'2026-09-10T18:00:00',status:'กำลังดำเนินการ',tone:'progress',urgent:false},
@@ -35,15 +82,71 @@
       {id:3,category:'งานแผน/งบประมาณ',title:'จัดส่งแผนการใช้งบประมาณ ประจำปี 2570',place:'ภาค 4 · เขต 4',due:'2026-09-09T16:30:00',status:'เกินกำหนด',tone:'late',urgent:true},
       {id:4,category:'เอกสารพนักงาน',title:'ส่งรายชื่อพนักงานเข้าอบรม พ.ร.บ.รปภ.',place:'ภาค 4 · เขต 4/1',due:'2026-09-12T13:00:00',status:'กำลังดำเนินการ',tone:'progress',urgent:false}
     ];
-    const now=new Date('2026-09-10T17:00:00+07:00');let active='all';
-    const isLate=t=>new Date(t.due)<now; const isToday=t=>new Date(t.due).toDateString()===now.toDateString(); const isSoon=t=>{const d=(new Date(t.due)-now)/86400000;return d>=0&&d<=2};
-    const fmt=t=>new Intl.DateTimeFormat('th-TH',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(t.due)).replace(' น.','');
-    function render(){const q=document.getElementById('search').value.trim().toLowerCase();let data=tasks.filter(t=>(t.title+t.category+t.place).toLowerCase().includes(q));if(active==='urgent')data=data.filter(t=>t.urgent);if(active==='soon')data=data.filter(isSoon);if(active==='late')data=data.filter(isLate);
-      document.getElementById('todayCount').textContent=tasks.filter(isToday).length;document.getElementById('soonCount').textContent=tasks.filter(isSoon).length;document.getElementById('lateCount').textContent=tasks.filter(isLate).length;document.getElementById('resultCount').textContent=`${data.length} รายการ`;
-      document.getElementById('taskList').innerHTML=data.length?data.map(t=>`<article class="task"><div class="taskTop"><span class="badge">▣ ${t.category}</span><span class="status ${t.tone}">${t.status}</span></div><h3>${t.title}</h3><div class="place">⌖ ${t.place}</div><div class="taskFoot"><div class="deadline"><small>กำหนดส่ง</small><b>${fmt(t)}</b></div><button class="open" onclick="openTask(${t.id})">${t.tone==='review'?'ดูสถานะ':'เปิดงาน'} →</button></div></article>`).join(''):'<div class="empty">ไม่พบงานที่ตรงกับตัวกรอง</div>';
+
+    const now=new Date('2026-09-10T17:00:00+07:00');
+    let active='all';
+    const isLate=t=>new Date(t.due)<now;
+    const isToday=t=>new Date(t.due).toDateString()===now.toDateString();
+    const isSoon=t=>{const d=(new Date(t.due)-now)/86400000;return d>=0&&d<=2};
+    const dateText=t=>new Intl.DateTimeFormat('th-TH',{day:'numeric',month:'short'}).format(new Date(t.due));
+    const timeText=t=>new Intl.DateTimeFormat('th-TH',{hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(t.due)).replace(' น.','');
+
+    const icon=(name)=>{
+      const paths={
+        file:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5M9 12h6M9 16h5"/>',
+        pin:'<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
+        calendar:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/>',
+        chevron:'<path d="m9 18 6-6-6-6"/>'
+      };
+      return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${paths[name]||''}</svg>`;
+    };
+
+    function render(){
+      const q=document.getElementById('search').value.trim().toLowerCase();
+      let data=tasks.filter(t=>(t.title+t.category+t.place).toLowerCase().includes(q));
+      if(active==='urgent')data=data.filter(t=>t.urgent);
+      if(active==='soon')data=data.filter(isSoon);
+      if(active==='late')data=data.filter(isLate);
+
+      document.getElementById('todayCount').textContent=tasks.filter(isToday).length;
+      document.getElementById('soonCount').textContent=tasks.filter(isSoon).length;
+      document.getElementById('lateCount').textContent=tasks.filter(isLate).length;
+      document.getElementById('resultCount').textContent=`${data.length} รายการ`;
+
+      document.getElementById('taskList').innerHTML=data.length?data.map(t=>`
+        <article class="task">
+          <div class="taskTop">
+            <span class="badge">${icon('file')}<span>${t.category}</span></span>
+            <span class="status ${t.tone}">${t.status}</span>
+          </div>
+          <div class="taskMain">
+            <div class="deadline">
+              <div class="deadlineLabel">${icon('calendar')}<span>กำหนดส่ง</span></div>
+              <div class="date">${dateText(t)}</div>
+              <div class="time">${timeText(t)} <small>น.</small></div>
+            </div>
+            <div class="taskInfo">
+              <h3>${t.title}</h3>
+              <div class="place">${icon('pin')}<span>${t.place}</span></div>
+              <button class="open" onclick="openTask(${t.id})"><span>${t.tone==='review'?'ดูสถานะ':'เปิดงาน'}</span>${icon('chevron')}</button>
+            </div>
+          </div>
+        </article>`).join(''):'<div class="empty">ไม่พบงานที่ตรงกับตัวกรอง</div>';
     }
-    function openTask(){const el=document.getElementById('toast');el.classList.add('show');setTimeout(()=>el.classList.remove('show'),1800)}
-    document.getElementById('search').addEventListener('input',render);document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');active=b.dataset.filter;render()});document.getElementById('filterBtn').onclick=()=>{document.querySelector('[data-filter="all"]').click()};render();
+
+    function openTask(){
+      const el=document.getElementById('toast');
+      el.classList.add('show');
+      setTimeout(()=>el.classList.remove('show'),1800);
+    }
+
+    document.getElementById('search').addEventListener('input',render);
+    document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
+      document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');active=b.dataset.filter;render();
+    });
+    document.getElementById('filterBtn').onclick=()=>document.querySelector('[data-filter="all"]').click();
+    render();
   </script>
 </body>
 </html>
