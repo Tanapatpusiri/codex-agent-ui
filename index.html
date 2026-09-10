@@ -36,16 +36,20 @@
     .list{display:grid;gap:11px}.task{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:15px;box-shadow:var(--shadow)}
     .taskStatusRow{display:flex;justify-content:flex-end;margin-bottom:8px}.status{display:inline-flex;align-items:center;border-radius:999px;padding:6px 9px;font-size:11px;line-height:1;font-weight:600}.status.progress{background:#fff3df;color:#b56e09}.status.review{background:#edf4ff;color:#2466c5}.status.late{background:var(--red-soft);color:var(--red)}
     .taskMain{display:grid;grid-template-columns:94px minmax(0,1fr);gap:14px;align-items:stretch}
-    .deadline{min-height:0;height:100%;border-radius:17px;padding:10px 8px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid var(--neutral-line);background:var(--neutral-soft);color:var(--neutral)}
+    .deadline{min-height:0;height:100%;border-radius:17px;padding:9px 7px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:1px solid var(--neutral-line);background:var(--neutral-soft);color:var(--neutral)}
     .deadline.danger{background:var(--red-soft);color:var(--red);border-color:var(--red-line)}
     .deadline.soon{background:var(--yellow-soft);color:var(--yellow);border-color:var(--yellow-line)}
     .deadline.today{background:var(--green-soft);color:var(--green);border-color:var(--green-line)}
-    .deadline .deadlineLabel{display:flex;align-items:center;justify-content:center;gap:5px;font-size:10px;font-weight:650;margin-bottom:7px;width:100%}.deadline .icon{width:14px;height:14px}.deadline .date{font-size:17px;line-height:1.15;font-weight:750;letter-spacing:-.03em}.deadline .time{font-size:14px;line-height:1.2;font-weight:650;margin-top:4px}.deadline .time small{font-size:10px;font-weight:500}
+    .deadlineIcon{display:grid;place-items:center;margin-bottom:3px}.deadlineIcon .icon{width:24px;height:24px;stroke-width:1.8}
+    .deadlineLabel{font-size:10px;line-height:1.2;font-weight:650;margin-bottom:2px}
+    .deadlineDay{font-size:31px;line-height:.98;font-weight:760;letter-spacing:-.04em;margin:2px 0 1px}
+    .deadlineMonthYear{font-size:12px;line-height:1.2;font-weight:650;margin-top:2px}
+    .deadlineTime{font-size:14px;line-height:1.2;font-weight:700;margin-top:5px}.deadlineTime small{font-size:10px;font-weight:550}
     .taskInfo{min-width:0;display:flex;flex-direction:column}.taskInfo h3{font-size:16px;line-height:1.42;margin:0 0 8px;font-weight:650;letter-spacing:-.02em}.place{display:flex;align-items:center;gap:5px;font-size:12px;line-height:1.3;color:#7e8796;margin-bottom:13px}.place .icon{width:14px;height:14px;flex:0 0 auto}.open{margin-top:auto;align-self:flex-start;min-height:40px;border:0;background:var(--blue);color:#fff;border-radius:13px;padding:0 14px;font-size:12px;font-weight:650;display:inline-flex;align-items:center;gap:7px}.open .icon{width:15px;height:15px}
     .empty{padding:40px 20px;text-align:center;color:#8992a1;background:#fff;border:1px solid var(--line);border-radius:20px}
     .nav{position:fixed;z-index:20;left:50%;bottom:max(10px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(calc(100% - 24px),536px);height:72px;background:rgba(255,255,255,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid #e1e6ed;border-radius:23px;box-shadow:0 14px 40px rgba(28,42,72,.14);display:grid;grid-template-columns:repeat(4,1fr);padding:6px}.nav button{border:0;background:transparent;color:#7b8493;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10px;font-weight:600}.nav button.active{color:var(--blue)}.nav .icon{width:20px;height:20px}
     .toast{position:fixed;z-index:30;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;background:#172033;color:#fff;padding:10px 14px;border-radius:12px;font-size:12px;transition:.2s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-    @media(max-width:370px){.app{padding-left:12px;padding-right:12px}.taskMain{grid-template-columns:88px minmax(0,1fr);gap:11px}.deadline{padding-left:6px;padding-right:6px}.taskInfo h3{font-size:15px}.sum{padding-left:9px;padding-right:9px}.sum span{font-size:10px}}
+    @media(max-width:370px){.app{padding-left:12px;padding-right:12px}.taskMain{grid-template-columns:88px minmax(0,1fr);gap:11px}.deadline{padding-left:5px;padding-right:5px}.deadlineDay{font-size:29px}.taskInfo h3{font-size:15px}.sum{padding-left:9px;padding-right:9px}.sum span{font-size:10px}}
     @media(min-width:700px){body{padding:24px}.app{border-radius:30px;background:#f7f9fc;box-shadow:0 30px 90px rgba(24,40,74,.1)}}
   </style>
 </head>
@@ -98,7 +102,8 @@
     const isToday=t=>new Date(t.due).toLocaleDateString('en-CA',{timeZone:'Asia/Bangkok'})===now.toLocaleDateString('en-CA',{timeZone:'Asia/Bangkok'});
     const isSoon=t=>{const d=(new Date(t.due)-now)/86400000;return d>=0&&d<=2};
     const deadlineTone=t=>isLate(t)||t.urgent?'danger':isToday(t)?'today':isSoon(t)?'soon':'neutral';
-    const dateText=t=>new Intl.DateTimeFormat('th-TH',{day:'numeric',month:'short',timeZone:'Asia/Bangkok'}).format(new Date(t.due));
+    const dayText=t=>new Intl.DateTimeFormat('th-TH',{day:'numeric',timeZone:'Asia/Bangkok'}).format(new Date(t.due));
+    const monthYearText=t=>new Intl.DateTimeFormat('th-TH',{month:'short',year:'2-digit',timeZone:'Asia/Bangkok'}).format(new Date(t.due));
     const timeText=t=>new Intl.DateTimeFormat('th-TH',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Bangkok'}).format(new Date(t.due)).replace(' น.','');
 
     const icon=(name)=>{
@@ -126,9 +131,11 @@
         <article class="task">
           <div class="taskMain">
             <div class="deadline ${deadlineTone(t)}">
-              <div class="deadlineLabel">${icon('calendar')}<span>กำหนดส่ง</span></div>
-              <div class="date">${dateText(t)}</div>
-              <div class="time">${timeText(t)} <small>น.</small></div>
+              <div class="deadlineIcon">${icon('calendar')}</div>
+              <div class="deadlineLabel">กำหนดส่ง</div>
+              <div class="deadlineDay">${dayText(t)}</div>
+              <div class="deadlineMonthYear">${monthYearText(t)}</div>
+              <div class="deadlineTime">${timeText(t)} <small>น.</small></div>
             </div>
             <div class="taskInfo">
               <div class="taskStatusRow"><span class="status ${t.tone}">${t.status}</span></div>
